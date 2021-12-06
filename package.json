@@ -17,12 +17,24 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "eslint": "^8.4.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-react": "^7.27.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
+    "eslint-plugin-html": "^6.2.0",
     "lodash": "^4.17.21"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderlore/weather-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderlore/weather-app/issues"
+  },
+  "homepage": "https://github.com/coderlore/weather-app#readme"
 }
