@@ -15,3 +15,7 @@ nav {
     align-items: center;
     height: 200px;
 }
+
+#current-condition {
+    width: 100%;
+}
