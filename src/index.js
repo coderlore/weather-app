@@ -15,17 +15,26 @@ content.appendChild(currentWeather);
 const details = document.querySelector("#details");
 const table = document.createElement("table");
 const row1 = document.createElement("tr");
-const row2 = document.createElement("tr");
 const feelsLike = document.createElement("td");
 const maxTemp = document.createElement("td");
 const minTemp = document.createElement("td");
 const humidity = document.createElement("td");
-
 row1.appendChild(feelsLike);
 row1.appendChild(maxTemp);
 row1.appendChild(minTemp);
 row1.appendChild(humidity);
 table.appendChild(row1);
+
+const row2 = document.createElement("tr");
+const sunrise = document.createElement("td");
+const sunset = document.createElement("td");
+const wind = document.createElement("td");
+const pressure = document.createElement("td");
+row2.appendChild(sunrise);
+row2.appendChild(sunset);
+row2.appendChild(wind);
+row2.appendChild(pressure);
+table.appendChild(row2);
 details.appendChild(table);
 
 async function getWeather() {
@@ -39,6 +48,17 @@ async function getWeather() {
   maxTemp.innerHTML = `Maximum temperature: ${weatherData.main.temp_max}`;
   minTemp.innerHTML = `Minimum temperature: ${weatherData.main.temp_min}`;
   humidity.innerHTML = `Humidity: ${weatherData.main.humidity}%`;
+  sunrise.innerHTML = `Sunrise: ${weatherData.sys.sunrise}`;
+  sunset.innerHTML = `Sunset: ${weatherData.sys.sunset}`;
+  wind.innerHTML = `Wind: ${weatherData.wind.speed}`;
+  pressure.innerHTML = `Pressure: ${weatherData.main.pressure}`;
 }
+
+async function getAllWeather() {
+  const data = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=21.3069&lon=-157.8583&exclude=minutely&appid=e563f19376073b9fb01a1ef1111b8442", { mode: "cors" });
+  const dataAll = data.json();
+  console.log(dataAll);
+}
+getAllWeather();
 
 getWeather();
