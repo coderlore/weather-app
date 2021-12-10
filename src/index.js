@@ -37,10 +37,35 @@ row2.appendChild(pressure);
 table.appendChild(row2);
 details.appendChild(table);
 
+// Forecast Section
+const forecast = document.querySelector("#forecast");
+const forecastTable = document.createElement("table");
+const forecastRow1 = document.createElement("tr");
+const day1Weather = document.createElement("td");
+const day2Weather = document.createElement("td");
+const day3Weather = document.createElement("td");
+
+forecastRow1.appendChild(day1Weather);
+forecastRow1.appendChild(day2Weather);
+forecastRow1.appendChild(day3Weather);
+forecastTable.appendChild(forecastRow1);
+forecast.appendChild(forecastTable);
+
+function convertTime(unixTime) {
+  const date = new Date(unixTime * 1000);
+  const hours = date.getHours();
+  const minutes = `0${date.getMinutes()}`;
+  const seconds = `0${date.getSeconds()}`;
+  const formattedTime = `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
+
+  console.log(date);
+}
+convertTime(1639260000);
+
 async function getWeather() {
   const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=honolulu&appid=e563f19376073b9fb01a1ef1111b8442&units=imperial", { mode: "cors" });
   const weatherData = await response.json();
-  console.log(weatherData);
+  // console.log(weatherData);
   currentCity.innerHTML = weatherData.name;
   currentTemp.innerHTML = weatherData.main.temp;
   currentWeather.innerHTML = weatherData.weather[0].main;
@@ -50,14 +75,17 @@ async function getWeather() {
   humidity.innerHTML = `Humidity: ${weatherData.main.humidity}%`;
   sunrise.innerHTML = `Sunrise: ${weatherData.sys.sunrise}`;
   sunset.innerHTML = `Sunset: ${weatherData.sys.sunset}`;
-  wind.innerHTML = `Wind: ${weatherData.wind.speed}`;
+  wind.innerHTML = `Wind: ${weatherData.wind.speed}mph`;
   pressure.innerHTML = `Pressure: ${weatherData.main.pressure}`;
 }
 
 async function getAllWeather() {
-  const data = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=21.3069&lon=-157.8583&exclude=minutely&appid=e563f19376073b9fb01a1ef1111b8442", { mode: "cors" });
-  const dataAll = data.json();
-  console.log(dataAll);
+  const data = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=21.3069&lon=-157.8583&appid=e563f19376073b9fb01a1ef1111b8442&units=imperial", { mode: "cors" });
+  const dataAll = await data.json();
+  day1Weather.innerHTML = dataAll.daily[1].weather[0].main;
+  day2Weather.innerHTML = dataAll.daily[2].weather[0].main;
+  day3Weather.innerHTML = dataAll.daily[3].weather[0].main;
+  // console.log(dataAll);
 }
 getAllWeather();
 
