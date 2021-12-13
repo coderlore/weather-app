@@ -47,3 +47,17 @@ async function getAllWeather() {
 getAllWeather();
 
 getWeather();
+
+function searchValidator(cityName) {
+  return cityName.charAt(0).toUpperCase() + cityName.slice(1);
+}
+
+const searchBtn = document.querySelector("#search-btn");
+const search = document.querySelector("#search");
+searchBtn.addEventListener("click", () => {
+  if (search.value == "") {
+    alert("Invalid input. Try again!");
+  } else {
+    console.log(searchValidator(search.value));
+  }
+});
