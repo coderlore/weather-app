@@ -1,5 +1,6 @@
 import { min } from "lodash";
 import "../dist/style.css";
+import convertTime, { formattedTime } from "./convertTime";
 
 const content = document.querySelector("#current-condition");
 const currentCity = document.createElement("div");
@@ -51,31 +52,24 @@ forecastRow1.appendChild(day3Weather);
 forecastTable.appendChild(forecastRow1);
 forecast.appendChild(forecastTable);
 
-function convertTime(unixTime) {
-  const date = new Date(unixTime * 1000);
-  const hours = date.getHours();
-  const minutes = `0${date.getMinutes()}`;
-  const seconds = `0${date.getSeconds()}`;
-  const formattedTime = `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
-
-  console.log(date);
-}
-convertTime(1639260000);
-
 async function getWeather() {
   const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=honolulu&appid=e563f19376073b9fb01a1ef1111b8442&units=imperial", { mode: "cors" });
   const weatherData = await response.json();
   // console.log(weatherData);
   currentCity.innerHTML = weatherData.name;
-  currentTemp.innerHTML = weatherData.main.temp;
+  currentTemp.innerHTML = parseInt(`${weatherData.main.temp}`, 10);
   currentWeather.innerHTML = weatherData.weather[0].main;
-  feelsLike.innerHTML = `Feels like: ${weatherData.main.feels_like}`;
-  maxTemp.innerHTML = `Maximum temperature: ${weatherData.main.temp_max}`;
-  minTemp.innerHTML = `Minimum temperature: ${weatherData.main.temp_min}`;
+  feelsLike.innerHTML = `Feels like: ${weatherData.main.feels_like}\xB0`;
+  maxTemp.innerHTML = `Maximum temperature: ${weatherData.main.temp_max}\xB0`;
+  minTemp.innerHTML = `Minimum temperature: ${weatherData.main.temp_min}\xB0`;
   humidity.innerHTML = `Humidity: ${weatherData.main.humidity}%`;
-  sunrise.innerHTML = `Sunrise: ${weatherData.sys.sunrise}`;
-  sunset.innerHTML = `Sunset: ${weatherData.sys.sunset}`;
-  wind.innerHTML = `Wind: ${weatherData.wind.speed}mph`;
+  const sunriseTimeDec = `${weatherData.sys.sunrise}`;
+  convertTime(sunriseTimeDec);
+  sunrise.innerHTML = `Sunrise: ${formattedTime}`;
+  const sunsetTimeDec = `${weatherData.sys.sunset}`;
+  convertTime(sunsetTimeDec);
+  sunset.innerHTML = `Sunset: ${formattedTime}`;
+  wind.innerHTML = `Wind: ${weatherData.wind.speed} mph`;
   pressure.innerHTML = `Pressure: ${weatherData.main.pressure}`;
 }
 
