@@ -2,6 +2,7 @@ import { min } from "lodash";
 import "../dist/style.css";
 import getWeather from "./getWeather";
 
+export let cityURL = "honolulu";
 // Forecast Section
 const forecast = document.querySelector("#forecast");
 const forecastTable = document.createElement("table");
@@ -48,16 +49,24 @@ getAllWeather();
 
 getWeather();
 
-function searchValidator(cityName) {
+/* function cityValidator(cityName) {
   return cityName.charAt(0).toUpperCase() + cityName.slice(1);
-}
+} */
 
 const searchBtn = document.querySelector("#search-btn");
 const search = document.querySelector("#search");
 searchBtn.addEventListener("click", () => {
-  if (search.value == "") {
+  const city = search.value;
+  if (city === "") {
     alert("Invalid input. Try again!");
   } else {
-    console.log(searchValidator(search.value));
+    cityURL = encodeURIComponent(city.trim());
+    const details = document.querySelector("#details");
+    details.removeChild(details.childNodes[0]);
+    // Need to figure this one out
+    const content = document.querySelector("#current-condition");
+    content.removeChild(content.childNodes[0]);
+    content.removeChild(content.childNodes[1]);
+    getWeather();
   }
 });
