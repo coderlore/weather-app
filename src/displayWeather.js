@@ -4,12 +4,18 @@ import convertTime, { formattedTime } from "./convertTime";
 function displayWeather() {
   const content = document.querySelector("#current-condition");
 
-  const currentWeatherIcon = document.createElement("i");
+  /* const currentWeatherIcon = document.createElement("i");
   currentWeatherIcon.classList.add("fas", "fa-cloud");
+  // https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png
+  content.appendChild(currentWeatherIcon); */
+
+  const currentWeatherIcon = document.createElement("img");
+  currentWeatherIcon.src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
   content.appendChild(currentWeatherIcon);
 
   const currentCity = document.createElement("div");
   currentCity.innerHTML = weatherData.name;
+  currentCity.id = "current-city";
   content.appendChild(currentCity);
 
   const currentTemp = document.createElement("div");
@@ -18,6 +24,7 @@ function displayWeather() {
 
   const currentWeather = document.createElement("div");
   currentWeather.innerHTML = weatherData.weather[0].main;
+  currentWeather.id = "current-weather";
   content.appendChild(currentWeather);
 
   // Details section

@@ -63,10 +63,14 @@ searchBtn.addEventListener("click", () => {
     cityURL = encodeURIComponent(city.trim());
     const details = document.querySelector("#details");
     details.removeChild(details.childNodes[0]);
-    // Need to figure this one out
-    const content = document.querySelector("#current-condition");
-    content.removeChild(content.childNodes[0]);
-    content.removeChild(content.childNodes[1]);
+
+    const currentCondtion = document.querySelector("#current-condition");
+    const currentCity = document.querySelector("#current-city");
+    const currentWeather = document.querySelector("#current-weather");
+    currentCondtion.removeChild(currentCondtion.childNodes[0]);
+    currentCondtion.removeChild(currentCondtion.childNodes[1]);
+    currentCondtion.removeChild(currentCity);
+    currentCondtion.removeChild(currentWeather);
     getWeather();
   }
 });
