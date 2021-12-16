@@ -4,11 +4,6 @@ import convertTime, { formattedTime } from "./convertTime";
 function displayWeather() {
   const content = document.querySelector("#current-condition");
 
-  /* const currentWeatherIcon = document.createElement("i");
-  currentWeatherIcon.classList.add("fas", "fa-cloud");
-  // https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png
-  content.appendChild(currentWeatherIcon); */
-
   const currentWeatherIcon = document.createElement("img");
   currentWeatherIcon.src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
   content.appendChild(currentWeatherIcon);
@@ -19,7 +14,8 @@ function displayWeather() {
   content.appendChild(currentCity);
 
   const currentTemp = document.createElement("div");
-  currentTemp.innerHTML = parseInt(`${weatherData.main.temp}`, 10);
+  const tempRounded = parseInt(`${weatherData.main.temp}`, 10);
+  currentTemp.innerHTML = `Current temperature: ${tempRounded}\xB0`;
   content.appendChild(currentTemp);
 
   const currentWeather = document.createElement("div");
@@ -33,11 +29,14 @@ function displayWeather() {
   const row1 = document.createElement("tr");
 
   const feelsLike = document.createElement("td");
-  feelsLike.innerHTML = `Feels like: ${weatherData.main.feels_like}\xB0`;
+  const feelsLikeRounded = parseInt(`${weatherData.main.feels_like}`, 10);
+  feelsLike.innerHTML = `Feels like: ${feelsLikeRounded}\xB0`;
   const maxTemp = document.createElement("td");
-  maxTemp.innerHTML = `Maximum temperature: ${weatherData.main.temp_max}\xB0`;
+  const maxTempRounded = parseInt(`${weatherData.main.temp_max}`, 10);
+  maxTemp.innerHTML = `Max temperature: ${maxTempRounded}\xB0`;
   const minTemp = document.createElement("td");
-  minTemp.innerHTML = `Minimum temperature: ${weatherData.main.temp_min}\xB0`;
+  const minTempRounded = parseInt(`${weatherData.main.temp_min}`, 10);
+  minTemp.innerHTML = `Min temperature: ${minTempRounded}\xB0`;
   const humidity = document.createElement("td");
   humidity.innerHTML = `Humidity: ${weatherData.main.humidity}%`;
   row1.appendChild(feelsLike);
@@ -56,7 +55,8 @@ function displayWeather() {
   convertTime(sunsetTimeDec);
   sunset.innerHTML = `Sunset: ${formattedTime}`;
   const wind = document.createElement("td");
-  wind.innerHTML = `Wind: ${weatherData.wind.speed} mph`;
+  const windRounded = parseInt(`${weatherData.wind.speed}`, 10);
+  wind.innerHTML = `Wind: ${windRounded} mph`;
   const pressure = document.createElement("td");
   pressure.innerHTML = `Pressure: ${weatherData.main.pressure}`;
   row2.appendChild(sunrise);

@@ -5,7 +5,6 @@ import getFullForecast from "./getFullForecast";
 
 export let cityURL = "honolulu";
 
-// getFullForecast();
 getWeather();
 
 /* function cityValidator(cityName) {
@@ -32,8 +31,8 @@ searchBtn.addEventListener("click", () => {
     currentCondtion.removeChild(currentWeather);
 
     const forecast = document.querySelector("#forecast");
-    const forecastTable = document.querySelector("forecast-table");
-    forecast.removeChild(forecast.childNodes[0]);
+    const forecastTable = document.querySelector("#forecast-table");
+    forecast.removeChild(forecastTable);
 
     getWeather();
   }

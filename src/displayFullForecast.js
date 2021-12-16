@@ -4,9 +4,13 @@ function displayFullForecast() {
   const forecast = document.querySelector("#forecast");
   const forecastTable = document.createElement("table");
   const forecastRow = document.createElement("tr");
+  forecastRow.classList.add("forecast-output");
   const day1Weather = document.createElement("td");
+  day1Weather.classList.add("forecast-details");
   const day2Weather = document.createElement("td");
+  day2Weather.classList.add("forecast-details");
   const day3Weather = document.createElement("td");
+  day3Weather.classList.add("forecast-details");
 
   forecastTable.id = "forecast-table";
   day1Weather.innerHTML = fullForecastData.daily[1].weather[0].main;
@@ -20,6 +24,7 @@ function displayFullForecast() {
   forecast.appendChild(forecastTable);
 
   const forecastIcon = document.createElement("tr");
+  forecastIcon.classList.add("forecast-output");
   const cell1 = document.createElement("td");
   const cell2 = document.createElement("td");
   const cell3 = document.createElement("td");

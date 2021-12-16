@@ -33,9 +33,24 @@ td {
     padding: 10px;
 }
 
+#details {
+    background-color: aliceblue;
+}
+
 #forecast {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.forecast-output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forecast-details {
+    width: 100%;
+    text-align: center;
 }

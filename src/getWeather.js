@@ -10,7 +10,7 @@ async function getWeather() {
   displayWeather();
   getFullForecast();
   // console.log(cityURL);
-  console.log(weatherData);
+  // console.log(weatherData);
 }
 
 export default getWeather;
