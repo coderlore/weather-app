@@ -1,8 +1,34 @@
 import { fullForecastData } from "./getFullForecast";
+import convertTime, { day } from "./convertTime";
 
 function displayFullForecast() {
   const forecast = document.querySelector("#forecast");
   const forecastTable = document.createElement("table");
+
+  const forecastDate = document.createElement("tr");
+  forecastDate.classList.add("forecast-output");
+  const date1 = document.createElement("td");
+  date1.classList.add("forecast-details");
+  const date2 = document.createElement("td");
+  date2.classList.add("forecast-details");
+  const date3 = document.createElement("td");
+  date3.classList.add("forecast-details");
+  const date1Dec = `${fullForecastData.daily[1].dt}`;
+  convertTime(date1Dec);
+  date1.innerHTML = `${day}`;
+  const date2Dec = `${fullForecastData.daily[2].dt}`;
+  convertTime(date2Dec);
+  date2.innerHTML = `${day}`;
+  const date3Dec = `${fullForecastData.daily[3].dt}`;
+  convertTime(date3Dec);
+  date3.innerHTML = `${day}`;
+
+  forecastDate.appendChild(date1);
+  forecastDate.appendChild(date2);
+  forecastDate.appendChild(date3);
+  forecastTable.appendChild(forecastDate);
+  forecast.appendChild(forecastTable);
+
   const forecastRow = document.createElement("tr");
   forecastRow.classList.add("forecast-output");
   const day1Weather = document.createElement("td");
