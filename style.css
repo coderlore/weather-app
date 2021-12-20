@@ -1,8 +1,21 @@
 @import url('/node_modules/@fortawesome/fontawesome-free/css/all.css');
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#logo {
+    height: 80px;
+    width: 80px;
+    display: block;
+    float: left;
+}
+
 nav {
     width: 100%;
-    background-color: gray;
+    background-color: rgb(175, 175, 175);
     position: fixed;
     top: 0;
     left: 0;
@@ -11,11 +24,38 @@ nav {
     align-items: center;
 }
 
+nav > :nth-child(2) {
+    margin-right: auto;
+}
+
+input {
+    width: 50%;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 10px;
+    border-style: none;
+    margin-right: 2px;
+}
+
+#search-btn {
+    height: 48px;
+    width: 10%;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-right: 20px;
+    border-style: none;
+}
+
+#search-btn:hover {
+    cursor: pointer;
+    background-color: tomato;
+}
+
 #content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    height: 270px;
     flex-direction: column;
     margin-top: 175px;
 }
@@ -34,7 +74,10 @@ td {
 }
 
 #details {
-    background-color: aliceblue;
+    background-color: rgb(175, 175, 175);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #forecast {
