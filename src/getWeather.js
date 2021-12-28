@@ -10,8 +10,6 @@ async function getWeather() {
     weatherData = await response.json();
     displayWeather();
     getFullForecast();
-    // console.log(cityURL);
-    // console.log(weatherData);
   } catch (err) {
     alert("Invalid city. Re-enter a valid city next time.");
     window.location.reload();
